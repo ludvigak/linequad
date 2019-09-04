@@ -24,4 +24,4 @@ init % To setup the paths for running things (must be done every session)
 Then run one of the examples (while still in the `matlab` directory):
 
 * The programs in `matlab/examples` demo the basics of the 3D line quadrature.
-* The programs in `matlab/examples` can be used to reproduce all the results (2D and 3D) shown in the paper.
+* The programs in `matlab/examples-paper` can be used to reproduce all the results (2D and 3D) shown in the paper.

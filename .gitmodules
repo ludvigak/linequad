@@ -1,0 +1,6 @@
+[submodule "matlab/external/legtools"]
+	path = matlab/external/legtools
+	url = https://github.com/ludvigak/legtools
+[submodule "matlab/external/fmmlib2d"]
+	path = matlab/external/fmmlib2d
+	url = https://github.com/zgimbutas/fmmlib2d.git

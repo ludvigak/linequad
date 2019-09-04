@@ -1,0 +1,24 @@
+function x = dvand(alpha, b)
+% x = dvand(alpha, b)
+%
+% Solves transposed system A^T*x = b
+% A is Vandermonde matrix, with nonstandard definition
+% A(i,j) = alpha(j)^i
+% 
+% Algorithm by Bjorck & Pereyra
+% Mathematics of Computation, Vol. 24, No. 112 (1970), pp. 893-903
+% https://doi.org/10.2307/2004623    
+%    
+    n=numel(alpha);
+    x=b;
+    for k=1:n
+        for j=n:-1:k+1
+            x(j)=(x(j)-x(j-1))/(alpha(j)-alpha(j-k));
+        end
+    end
+    for k=n-1:-1:1
+        for j=k:n-1
+            x(j)=x(j)-alpha(k)*x(j+1);
+        end
+    end
+end

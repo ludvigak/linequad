@@ -1,0 +1,6 @@
+addpath('bin')
+addpath('tests')
+addpath('examples')
+addpath(genpath('examples-paper'))
+addpath(genpath('src'))
+addpath(genpath('external'))

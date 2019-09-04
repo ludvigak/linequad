@@ -1,0 +1,3 @@
+# To init submodules, run
+
+git submodule update --init --recursive

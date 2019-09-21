@@ -32,9 +32,9 @@ parfor i=1:numel(Z)
     z = Z(i);
     kmax = max(klist)+1;
     if shifted
-        [p1,p3,p5] = rsqrt_pow_integrals(z, kmax);           
+        [p1,p3,p5] = rsqrt_pow_integrals_shift(z, kmax);           
     else
-        [p1,p3,p5] = rsqrt_pow_integrals_noshift(z, kmax);           
+        [p1,p3,p5] = rsqrt_pow_integrals(z, kmax);           
     end
     for j=1:Nk
         k = klist(j);

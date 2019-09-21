@@ -3,7 +3,7 @@ function curvedfibers()
 % Fiber parametrized in t from -1 to 1
 % Ludvig af Klinteberg and Alex Barnett, May 2018   
     
-    % Parametrization of fibre (part of helix)
+    % Parametrization of fiber (part of helix)
     r = 1/2;
     k = pi/2;
     c = 1;
@@ -13,7 +13,7 @@ function curvedfibers()
     z = @(t) c*t*scale;       
      
     % Target point near bdry:
-    s0 = 0.2; d = .01;
+    s0 = 0.2; d = 1e-4;
     
     % Target point on extension:
     %s0 = 1.01; d = 0;
@@ -24,7 +24,10 @@ function curvedfibers()
     z0 = z(s0);
     
     % Density to integrate
-    density = @(t) exp(t/2);    
+    density = @(t) exp(t/2);                 % generic
+%    density = @(t) exp(t/2) .* (t-s0).^2;    % model for RR^T/R^5 type terms
+    
+    density(s0).*[log(1/distance), distance^(-2), distance^(-4)]
     
     % === END PARAMS
     
@@ -85,6 +88,8 @@ function curvedfibers()
     % Compute special quadrature weights
     [w1, w3, w5] = rsqrt_pow_weights(tj, troot); % O(n^2) per point
     
+%    figure(2); clf; plot(tj,w5,'+'); title('w5')   % show m=5 weights
+    
     % Eval special quadrature
     Q1spec = sum(w1.*f1j);
     Q3spec = sum(w3.*f3j);
@@ -124,7 +129,7 @@ function curvedfibers()
     disp(struct2table(d5))
     
     % Plot problem
-    clf
+    figure(1); clf
     t = linspace(-1,1);
     plot3(x(t), y(t), z(t))
     hold on 

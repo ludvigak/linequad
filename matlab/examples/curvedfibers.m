@@ -1,34 +1,36 @@
 function curvedfibers()
 % Test close eval of kernels 1/R, 1/R^3, and 1/R^5 for single point close to 3D fiber
 % Fiber parametrized in t from -1 to 1
-% Ludvig af Klinteberg and Alex Barnett, May 2018   
+% Ludvig af Klinteberg and Alex Barnett, May 2018.   Tweaks Barnett 9/21/19.
     
     % Parametrization of fiber (part of helix)
     r = 1/2;
     k = pi/2;
     c = 1;
-    scale = 100; % To check invariance
+    scale = 10;   % To check invariance
     x = @(t) r*cos(k*t)*scale;
     y = @(t) r*sin(k*t)*scale;
     z = @(t) c*t*scale;       
      
     % Target point near bdry:
-    s0 = 0.2; d = 1e-4;
+    s0 = 0.2; d = 1e-2;     % relative dist
     
     % Target point on extension:
     %s0 = 1.01; d = 0;
     
     distance = d*scale
-    x0 = x(s0);
-    y0 = y(s0)+distance;
+    x0 = x(s0)+cos(k*s0)*distance;   % head off orthog, makes distance exact
+    y0 = y(s0)+sin(k*s0)*distance;
     z0 = z(s0);
     
     % Density to integrate
     density = @(t) exp(t/2);                 % generic
-%    density = @(t) exp(t/2) .* (t-s0).^2;    % model for RR^T/R^5 type terms
-    
-    density(s0).*[log(1/distance), distance^(-2), distance^(-4)]
-    
+%   density = @(t) exp(t/2) .* (t-s0).^2;    % model for RR^T/R^5 type terms
+
+%   rough order predictions (in the generic, or R^2/r^5 model, cases...)
+    Irough = density(s0).*[log(1/distance), distance^(-2), distance^(-4)]/scale
+%   Irough = exp(s0/2).*[1, log(1/distance), distance^(-2)/4]/scale^3
+   
     % === END PARAMS
     
     % - Integrands with 1/R^p kernels, p=1,3,5
@@ -135,6 +137,8 @@ function curvedfibers()
     hold on 
     plot3(x(tj), y(tj), z(tj),'.b')   
     plot3(x0, y0, z0, '*r')
+    plot3(x(s0), y(s0), z(s0), 'mo')   % nearest pt
     axis equal
+    xlabel('x'); ylabel('y'); zlabel('z');
 end
 

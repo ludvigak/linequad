@@ -13,7 +13,7 @@ function curvedfibers()
     z = @(t) c*t*scale;       
      
     % Target point near bdry:
-    s0 = 0.2; d = 1e-2;     % relative dist
+    s0 = 0.2; d = 1e-4;     % s0 is nearest param pt; d is relative dist
     
     % Target point on extension:
     %s0 = 1.01; d = 0;
@@ -25,18 +25,18 @@ function curvedfibers()
     
     % Density to integrate
     density = @(t) exp(t/2);                 % generic
-%   density = @(t) exp(t/2) .* (t-s0).^2;    % model for RR^T/R^5 type terms
+%    density = @(t) exp(t/2) .* (t-s0).^2;    % model for RR^T/R^5 type terms
 
 %   rough order predictions (in the generic, or R^2/r^5 model, cases...)
     Irough = density(s0).*[log(1/distance), distance^(-2), distance^(-4)]/scale
-%   Irough = exp(s0/2).*[1, log(1/distance), distance^(-2)/4]/scale^3
+%    Irough = exp(s0/2).*[1, log(1/distance), distance^(-2)/4]/scale^3
    
     % === END PARAMS
     
     % - Integrands with 1/R^p kernels, p=1,3,5
     % - These are the kernels needed for the stokeslet and the doublet
     % of slender body theory.
-    % - This is actually missing line element! (not important here)
+    % - This is actually missing line element! (not important here, since const)
     rx = @(t) x(t)-x0;
     ry = @(t) y(t)-y0;
     rz = @(t) z(t)-z0;
@@ -90,7 +90,7 @@ function curvedfibers()
     % Compute special quadrature weights
     [w1, w3, w5] = rsqrt_pow_weights(tj, troot); % O(n^2) per point
     
-%    figure(2); clf; plot(tj,w5,'+'); title('w5')   % show m=5 weights
+    figure(2); clf; plot(tj,w3./R(tj).^3,'+'); title('w3 / R^3')   % show m=3 weights
     
     % Eval special quadrature
     Q1spec = sum(w1.*f1j);

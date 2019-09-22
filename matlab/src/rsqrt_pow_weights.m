@@ -6,6 +6,7 @@ n = numel(tj);
 use_bjorck_pereyra = true; % Even faster than precomputed LU
 
 [p1, p3, p5] = rsqrt_pow_integrals(troot, n);
+%p3
 basis = tj; 
 
 % Compute "modified quadrature weights"

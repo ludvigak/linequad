@@ -77,8 +77,8 @@ end
 if N>1
     I3(2) = 1/u1-1/u2;
 end
-for n=2:N-1
-    I3(n+1) = I1(n-1) - b^2*I3(n-1);
+for n=2:N-1            % note seems like I3(3) loses digits, even at a=0
+  I3(n+1) = I1(n-1) - b^2*I3(n-1);    % and this loss all due to I1(1).
 end
 
 if nargout==2

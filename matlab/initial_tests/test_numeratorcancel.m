@@ -10,7 +10,9 @@ t0 = s0 + 1i*d;   % aka troot.  s0 must = Re(t0)
 
 %f = @(t) sin(t+1);   % generic "density"
 q=2;     % known numerator power in...
-f = @(t) sin(t+1).*(t-s0+0.6*d).^q; % "density", RR^T style vanishing near s0
+%f = @(t) sin(t+1).*(t-s0+0.6*d).^q; % "density", RR^T style vanishing near s0
+f = @(t) sin(t+1).*(t-t0).^q; % "density", RR^T nishing, known root
+% note only works if the q-root in "density" f is t0
 
 R = @(t) abs(t-t0);   % dist func in C
 integrand3 = @(t) f(t)./R(t).^3;
@@ -49,11 +51,11 @@ fprintf('recur, adj   \tI=%.15g \trel err %.3g\n',I3a,abs((I3a-I3e)/I3e))
 % following fail... due to not having right q-order-root location in f.
 % (F is in fact not smooth)
 
-% repaired non-adj:
+% repaired non-adj: (doesn't need to look up f(s0), just use fj)...
 F = @(t) f(t)./(t-t0).^2;   % density w/ sim-to-known-factor killed
 Fj = F(tj);   % assume still relative acc for each eval
 d = V\Fj(:);           % d_k coeffs of F
-F(sh)
+%F(sh)
 fprintf('rel err on d(1): %.3g\n',abs((F(sh)-d(1))/F(sh)))
 M = toeplitz([t0^2,-2*t0,1,zeros(1,n-3)],[t0^2,zeros(1,n-1)]); % q=2 only
 c = M*d;
@@ -62,6 +64,8 @@ I3r = sum(c.*p3);
 fprintf('repair non-adj\tI=%.15g \trel err %.3g\n',I3r,abs((I3r-I3e)/I3e))
 
 % repaired adj meth:
-lam = V'\(M'*p3);
-I3ra = sum(lam.*Fj);
+lam = V'\(M.'*p3);   % note real-transpose!
+I3ra = sum(lam.*Fj);  % could also diag-mult lam by 1/(t-t0)^2 to make f-wghts
 fprintf('repair adj\tI=%.15g \trel err %.3g\n',I3ra,abs((I3ra-I3e)/I3e))
+% sim acc as non-adj - good!
+

@@ -170,19 +170,19 @@ function compare_2d_complex_real(varargin)
         
         subplot(3,3,4)
         pcolor(T1, T2, log10(Ecpx16));    
-        title('Complex basis (16 pts)')    
+        title('HO (16 pts)')    
 
         subplot(3,3,7)
         pcolor(T1, T2, log10(Ecpx32));    
-        title('Complex basis (interp to 32)')        
+        title('HO (interp to 32)')        
                 
         subplot(3,3,6)
         pcolor(T1, T2, log10(Ecpxmod16));    
-        title('Real basis (16 pts)')    
+        title('SSQ (16 pts)')    
 
         subplot(3,3,9)
         pcolor(T1, T2, log10(Ecpxmod32));
-        title('Real basis (interp to 32)')        
+        title('SSQ (interp to 32)')        
         
         for i=2:9
             subplot(3,3,i);
@@ -215,25 +215,25 @@ function compare_2d_complex_real(varargin)
         
         sfigure(3);
         pcolor(real(Z), imag(Z), log10(Ecpx16));    
-        title(['Complex, 16 pts, k=' num2str(k)])    
+        title(['HO, 16 pts, k=' num2str(k)])    
         hold on
         plot(complex(g(t16)), '.-r')            
 
         sfigure(4);
         pcolor(real(Z), imag(Z), log10(Ecpx32));    
-        title(['Complex, 32 pts, k=' num2str(k)])        
+        title(['HO, 32 pts, k=' num2str(k)])        
         hold on
         plot(complex(g(t32)), '.-r')                    
         
         sfigure(5);
         pcolor(real(Z), imag(Z), log10(Ecpxmod16));    
-        title(['Real, 16 pts, k=' num2str(k)])    
+        title(['SSQ, 16 pts, k=' num2str(k)])    
         hold on
         plot(complex(g(t16)), '.-r')            
 
         sfigure(6);
         pcolor(real(Z), imag(Z), log10(Ecpxmod32));    
-        title(['Real, 32 pts, k=' num2str(k)])        
+        title(['SSQ, 32 pts, k=' num2str(k)])        
         hold on
         plot(complex(g(t32)), '.-r')                    
     end    

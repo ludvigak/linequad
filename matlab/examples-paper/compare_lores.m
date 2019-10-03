@@ -51,7 +51,7 @@ int = ~exterior;
 
 % Comparison
 results = {Urealn, Ucpxn, Ureal2n, Ucpx2n};
-names = {'Real, 16 pts', 'Complex, 16 pts', 'Real, 32 pts', 'Complex, 32 pts'};
+names = {'SSQ, 16 pts', 'HO, 16 pts', 'SSQ, 32 pts', 'HO, 32 pts'};
 s = struct();
 for i=1:4
     sfigure(i); clf(); publication_fig();

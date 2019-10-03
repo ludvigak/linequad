@@ -85,6 +85,8 @@ creg32 = L32 * (real( integrand(t32,z) .* (t32-t0)));
 semilogy(abs(c32),'.-', 'DisplayName', 'original')
 hold on
 semilogy(abs(creg32),'.-', 'DisplayName', 'regularized')
+klist = 1:32;
+semilogy(klist,rho.^(-klist), '-', 'DisplayName', '\rho(t_1)^{-k}')
 grid on
 title('Legendre coeffs')
 legend('Location','best')

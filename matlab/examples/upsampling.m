@@ -71,6 +71,12 @@ grid on
 regularized = @(t) -real( 1i*(1+2i*k*t) .* 1 ./ (1+1i*k*(t0+t)));
 t1 = 1i/k-t0;
 
+disp('rho(t1) and pred interp err at n=16:')
+rho=abs(t1-sqrt(t1^2-1))    % predict the rate for interp (rho^-n)
+%rho =          5.00516368007557
+rho^-16
+%ans =      6.44625451777593e-12
+
 % Plot poly coeffs for original and regularized integrands
 sfigure(2);clf
 L32 = legendre.matrix(32);

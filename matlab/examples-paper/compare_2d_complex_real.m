@@ -58,7 +58,7 @@ function compare_2d_complex_real(varargin)
     % Gauss-Legendre quadrature nodes and weights
     [t16,w16] = lgwt2(16,-1,1);
     [t32,w32] = lgwt2(32,-1,1);
-    M = bclag_interp_matrix(t16, bclag_interp_weights(t16), t32); % Upsampling matrix t16 -> t32
+    M = bclag_interp_matrix(t16, t32); % Upsampling matrix t16 -> t32
 
     % Integrand after interpolating from 16 to 32 points
     integrand_interp32 = @(z) kernel(z, M*g(t16), 1i*M*gp(t16)) .* (M*density(t16));

@@ -9,5 +9,11 @@ n = numel(x);
 
 w = zeros(size(x));
 for j=1:n
-    w(j) = 1/prod(x(j)-x(1:n~=j));
-end
+    wj = 1;
+    for i=1:n
+        if i~=j
+            wj = wj*(x(j)-x(i));
+        end
+    end
+    w(j) = 1/wj;
+end    

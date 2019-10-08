@@ -40,7 +40,7 @@ n16 = 1i*gp(t16);
 sigma16 = density(t16);
 
 % Upsample
-M = bclag_interp_matrix(t16, bclag_interp_weights(t16), t32);
+M = bclag_interp_matrix(t16, t32);
 g32 = M*g16;
 n32 = M*n16;
 sigma32 = M*sigma16;

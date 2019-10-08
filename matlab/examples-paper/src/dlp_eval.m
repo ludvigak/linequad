@@ -21,8 +21,7 @@ end
 
 [tn,wn] = lgwt2(g.order,-1,1);
 [t2n,w2n] = lgwt2(2*g.order,-1,1);
-bcw = bclag_interp_weights(tn);
-Mbc = bclag_interp_matrix(tn, bcw, t2n);
+Mbc = bclag_interp_matrix(tn, t2n);
 
 % Corrections
 [Urealn, Ureal2n, Ucpxn, Ucpx2n] = deal(Ufmm);

@@ -8,6 +8,8 @@
 
 % Alex variant also includes all targs close to curve test - see targtype.
 
+% Alex added (6) case for 3-digit slice test at nquad=4
+
 function demo_long_fiber(varargin) % Function makes Matlab JIT compile better
 
 SAVEPLOTS = false;
@@ -59,6 +61,10 @@ switch test_no
     targtype = 'n';    
     tol = 1e-10;
     dist = 1e-4;
+  case 6                    % try lower nquad for lower acc.
+   nquad = 4;  % #digits + 1
+   targtype = 's';    
+   tol = 1e-3;
   otherwise
     error('Unknown test no')
 end
@@ -125,6 +131,7 @@ switch WHICH_REFERENCE
     % otherwise errors get artifically small.
     nquad_ref = nquad+2;
     tol_ref = 5e-14;
+    if nquad<16, tol_ref = 1e-2*tol;  end    % low-acc test cases
     Hlim_ref = 1.0;
     [tj_ref, wj_ref, npan_ref] = adaptive_panelization(s, nquad_ref, tol_ref);
     fprintf('Discretization: nquad=%d, npan=%d\n', nquad_ref, npan_ref);

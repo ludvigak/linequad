@@ -26,7 +26,8 @@ while ~all_pass
         % Discretize and check if panel resolved
         tj = ta + dt/2*(tgl+1);
         zpj = curve.dtau(tj);
-        est = resolution_estimate(abs(zpj));
+        % est = resolution_estimate(abs(zpj));
+        est = resolution_estimate(zpj);
         resolution_ok = (est < tol);
         % Check length compared to neighbors
         if i==1

@@ -194,6 +194,15 @@ if save_paper_plots
     saveplot(2, 'laplace_domain_complex16.png')
     saveplot(12, 'laplace_slice_complex16.png')
     saveplot(22, 'laplace_zoom_complex16.png')
+
+    saveplot(3, 'laplace_domain_real32.png')
+    saveplot(13, 'laplace_slice_real32.png')
+    saveplot(23, 'laplace_zoom_real32.png')
+        
+    saveplot(4, 'laplace_domain_complex32.png')
+    saveplot(14, 'laplace_slice_complex32.png')
+    saveplot(24, 'laplace_zoom_complex32.png')
+    
     
 end
 

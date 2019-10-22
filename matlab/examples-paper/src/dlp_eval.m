@@ -4,7 +4,7 @@ function [Urealn, Ureal2n, Ucpxn, Ucpx2n, exterior] = dlp_eval(g, den, Z, opt)
 Ufmm = laplace_dlp_fmm_targ(g, den, Z);
 % Exterior marker
 marker = laplace_dlp_fmm_targ(g, ones(size(den)), Z);
-exterior = abs(marker) < 1e-8;
+exterior = abs(marker) < 1e-1;
 
 % Precompute mappings
 L = legendre.matrix(g.order);

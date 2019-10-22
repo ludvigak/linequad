@@ -16,7 +16,7 @@ end
 % Boundary discretization
 opt.order = 16;
 opt.tol = 1e-6; % Resolution
-opt.R = 3; % Bernstein radius for eval
+opt.R = 1.8; % Bernstein radius for eval
 
 g = adaptive_composite_discretization(curve, opt);
 disp(['Num panels: ', num2str(numel(g.t_edges)-1)])
@@ -64,7 +64,7 @@ for i=1:4
     axis image
     shading flat
     xlabel(colorbar(), 'log_{10} E_{rel}')
-    caxis([-16, -8])    
+    caxis([-8, 0])    
     title(names{i})    
     maxrelerr = norm(REF(int)-U(int), inf)/norm(REF(int),inf);    
     text(min(real(g.z)), min(imag(g.z))-0.2, ['$\max E_{rel}=$', sprintf('%.1e',maxrelerr)],'interpreter','latex')

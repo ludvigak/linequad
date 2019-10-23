@@ -3,10 +3,8 @@
 Nearly singular quadrature for line integrals in 2D and 3D, using the "singularity swap"
 method.
 
-This repository accompanies the paper "Accurate quadrature of nearly singular line
-integrals in two and three dimensions" by L. af Klinteberg and A. Barnett. It contains
-complete Matlab implementations of the algorithms for 2D and 3D line quadrature. Provided
-are also C implementations for all computational steps of the 3D line quadrature. These are linked to Matlab via MEX, but can also be compiled into a library.
+This repository accompanies the paper "Accurate quadrature of nearly singular line integrals in two and three dimensions by singularity swapping" by L. af Klinteberg and A. Barnett ([arXiv:1910.09899 [math.NA]](https://arxiv.org/abs/1910.09899)).
+It contains complete Matlab implementations of the algorithms for 2D and 3D line quadrature. Provided are also C implementations for all computational steps of the 3D line quadrature. These are linked to Matlab via MEX, but can also be compiled into a library.
 
 The 3D code has the most mature interface, in the form of `line3_near_weights`.
 

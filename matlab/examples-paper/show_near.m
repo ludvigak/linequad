@@ -28,7 +28,7 @@ den = A\rhs;
 toc
 
 if save_paper_plots
-    Ngrid = 250;
+    Ngrid = 300;
 else
     Ngrid = 50;
 end

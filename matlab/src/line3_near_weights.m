@@ -1,12 +1,12 @@
 function [w1, w3, w5, specquad_needed] = line3_near_weights(tj, wj, xj, yj, zj, X, Y, Z, varargin)
 %
-% [w1,w3,w5] = line3_near_weights(tj, zj, yj, zj, X, Y, Z, [rho])
+% [w1, w3, w5, specquad_needed] = line3_near_weights(tj, wj, xj, yj, zj, X, Y, Z, [rho])
 %
 % Near eval quadrature weights for kernel 1/R^p, p=1,3,5
 %
 % INPUT:
 % tj: Nodes in parametrization space [-1, 1] (probably Gauss-Legendre points)
-% wj: Quadrature weights accompanying tj
+% wj: Quadrature weights accompanying tj (e.g. Gauss-Legendre weights)
 % xj, yj, zj: Points on curve, corresponding to tj
 % X, Y, Z: List of target points
 % rho: Critical Bernstein radius, weights computed for roots inside it.
